@@ -16,6 +16,10 @@ En el ESP-IDF programaremos en C. Por lo cual, recomiendo hacer un repaso concep
 
 - https://sites.google.com/cursoscapse.com/pdm/
 
+Tambien utilizaremos FreeRTOS. Por lo cual, recomiendo ver los videos de la siguiente pagina:
+
+- https://www.digikey.com/en/maker/projects/what-is-a-realtime-operating-system-rtos/28d8087f53844decafa5000d89608016
+
 Estos ejemplos, constituyen la primer etapa de este proyecto. En la siguiente, espero poder desarrollar un conjunto de videos para acompañarlos. Y finalmente, culiminar el proyecto con la publicacion de un libro.
 
 Sin mas preambulos ¡Empecemos a programar!
