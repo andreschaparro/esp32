@@ -57,7 +57,7 @@ static void tarea_pulsador(void *pvParameters)
         {
             estado_led = 0;
         }
-        gpio_set_level(led, estado_led);
+        ESP_ERROR_CHECK(gpio_set_level(led, estado_led));
         ESP_LOGD(tag, "Se apreto el pulsador a los %" PRIu32 " ticks", xTaskGetTickCount());
     }
 }

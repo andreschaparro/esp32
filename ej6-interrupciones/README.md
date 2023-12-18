@@ -10,7 +10,7 @@ Primero, debemos configurar la entrada para que genere una interrupcion:
 
 1. Llamar a la funcion _gpio_set_intr_type()_.
 2. Pasarle como primer parametro la variable _pulsador_.
-3. Pasarle como segundo **GPIO_INTR_NEGEDGE** que corresponde a cuando queremos que se produzca la interrupcion:
+3. Pasarle como segundo parametro **GPIO_INTR_NEGEDGE** que corresponde a cuando queremos que se produzca la interrupcion. Las opciones disponibles son:
 
    - Para el flanco ascendente _GPIO_INTR_POSEDGE_.
    - Para el flanco descendente _GPIO_INTR_NEGEDGE_,
