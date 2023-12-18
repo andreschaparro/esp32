@@ -30,7 +30,7 @@ En FreeRTOS, las funciones que tienen el prefijo _x_ en su nombre pueden devuelv
 
 Si devuelve un _BaseType_t_, se debe verificar el valor con la macro _configASSERT_.
 
-La macro _configASSERT_ verifica condiciones del tipo booleanas, del mismo modod que _assert_. Asi, debemos pasarle como parametro que la condicion de que valor retornado sea igual a _pdPASS_.
+La macro _configASSERT_ verifica condiciones del tipo booleanas, del mismo modo que _assert_. Asi, debemos pasarle como parametro que la condicion de que valor retornado sea igual a _pdPASS_.
 
 ## Eliminar una tarea
 
