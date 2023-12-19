@@ -48,11 +48,7 @@ static void tarea_productor(void *pvParameters)
     char tx_buffer[100];
     uint8_t i;
     cola = xQueueCreate(10, sizeof(tx_buffer));
-    if (cola == NULL)
-    {
-        ESP_LOGE(tag, "Error al crear la cola");
-        esp_restart();
-    }
+    configASSERT(cola != NULL);
     ESP_LOGD(tag, "Escriba una cadena de texto y termine con un ENTER");
     for (;;)
     {
@@ -82,7 +78,7 @@ static void tarea_consumidor(void *pvParameters)
     for (;;)
     {
         memset(rx_buffer, '\0', sizeof(rx_buffer));
-        if (xQueueReceive(cola, (void *)rx_buffer, (TickType_t)5) == pdTRUE)
+        if (xQueueReceive(cola, rx_buffer, (TickType_t)5) == pdTRUE)
         {
             ESP_LOGD(tag, "La cadena de texto recibida es: %s", rx_buffer);
         }
