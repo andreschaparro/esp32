@@ -44,6 +44,8 @@ FreeRTOS es apropiativo. Asi, que si entramos al loop infinito de nuestra unica 
 
 Para ello, se utiliza la funcion _vTaskDelay()_.
 
+Otra opcion, es utilizar _vTaskDelayUnitl()_. Que incluye dentro del delay la ejecucion del codigo. A diferencia de _vTaskDelay()_, que ejecuta el codigo y luego empieza a contar el delay.
+
 Al hacer esto, ponemos a _app_main_ en estado de bloqueo durante un tiempo. Asi, el comportamiento que se obtiene es similar al de la funcion _delay()_ de Arduino.
 
 Para inicializar y llamar a la funcion que genera el delay:

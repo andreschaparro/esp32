@@ -16,11 +16,15 @@ En el ESP-IDF programaremos en C. Por lo cual, recomiendo hacer un repaso concep
 
 - https://sites.google.com/cursoscapse.com/pdm/
 
-Tambien utilizaremos FreeRTOS. Por lo cual, recomiendo ver los videos de la siguiente pagina:
+Tambien utilizaremos FreeRTOS que es un RTOS apropiativo (preemptive). Por lo cual, recomiendo ver los videos de la siguiente pagina y consultar la documentacion oficial:
 
 - https://www.digikey.com/en/maker/projects/what-is-a-realtime-operating-system-rtos/28d8087f53844decafa5000d89608016
 
+- https://www.freertos.org/features.html
+
 Estos ejemplos, constituyen la primer etapa de este proyecto. En la siguiente, espero poder desarrollar un conjunto de videos para acompañarlos. Y finalmente, culiminar el proyecto con la publicacion de un libro.
+
+Como extra, se incluye una seccion de practicas a resolver y una posible solucion. Los invito a que hagan las suyas, sino no hay ninguna forma de aprender.
 
 Sin mas preambulos ¡Empecemos a programar!
 

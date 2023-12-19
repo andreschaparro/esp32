@@ -22,7 +22,7 @@ El ejemplo, nos permitira reescribir el codigo del ejemplo 6 utilizando dos tare
 
 Como primero es necesario leer el pulsador para luego invertir el estado del led. Este es un ejemplo de señalizacion.
 
-# Crear un semaforo binario
+## Crear un semaforo binario
 
 1. Crear una instancia de la estructura _SemaphoreHandle_t_ llamada **sem_bin**.
 2. Inicializarla en **NULL**.
@@ -32,19 +32,19 @@ Como primero es necesario leer el pulsador para luego invertir el estado del led
 
 NOTA: Un semaforo binario siempre se crea tomado.
 
-# Dar un semaforo binario
+## Dar un semaforo binario
 
 1. Llamar a la macro _xSemaphoreGive()_.
 2. Pasarle como parametro **sem_bin**.
 
-# Tomar un semaforo binario
+## Tomar un semaforo binario
 
 1. Llamar a la macro _xSemaphoreTake()_.
 2. Pasarle como primer parametro **sem_bin**.
 3. Pasarlo como segundo parametro 5 casteado como _(TickType_t)_. Este valor, es la cantidad de ticks a esperar si el semafoto esta tomado con la tarea bloqueada. En caso de poner 0, la macro se vuelve no bloqueante.
 4. Si el valor devuelto por _xSemaphoreTake()_ es igual a _pdTRUE_ se pudo tomar el semaforo.
 
-# Crear, dar, y tomar de un semaforo contador
+## Crear, dar, y tomar de un semaforo contador
 
 El procedimiento es similar al binario, salvo que se utiliza la macro _xSemaphoreCreateCounting_. Como primer parametro, se le pasa el valor maximo que puede tener. Y como segundo parametro, se le pasa el valor inicial.
 
