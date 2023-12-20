@@ -40,13 +40,13 @@ El ESP32 tien 2 COREs, uno es el _CORE_0_ y el otro el _CORE_1_, llamados _PRO_C
 
 El _app_main_ se ejecuta en el _CORE_0_ y es la unica tarea de FreeRTOS que existe por el momento.
 
-FreeRTOS es apropiativo. Asi, que si entramos al loop infinito de nuestra unica tarea, debemos ceder el uso del CPU periodicamente para evitar que se produzca un error y se reinicie el ESP32.
+FreeRTOS es apropiativo (preemptive). Asi, que si entramos al loop infinito de nuestra unica tarea, debemos ceder el uso del CPU periodicamente para evitar que se produzca un error y se reinicie el ESP32.
 
 Para ello, se utiliza la funcion _vTaskDelay()_.
 
-Otra opcion, es utilizar _vTaskDelayUnitl()_. Que incluye dentro del delay la ejecucion del codigo. A diferencia de _vTaskDelay()_, que ejecuta el codigo y luego empieza a contar el delay.
-
 Al hacer esto, ponemos a _app_main_ en estado de bloqueo durante un tiempo. Asi, el comportamiento que se obtiene es similar al de la funcion _delay()_ de Arduino.
+
+Otra opcion, es utilizar _vTaskDelayUnitl()_. Que incluye, dentro de la duracion del delay la ejecucion del codigo. A diferencia de _vTaskDelay()_, que ejecuta el codigo y luego empieza con el delay.
 
 Para inicializar y llamar a la funcion que genera el delay:
 

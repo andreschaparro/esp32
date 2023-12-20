@@ -31,7 +31,12 @@ void app_main(void)
 
 static void IRAM_ATTR pulsador_isr_handler(void *args)
 {
-    xTaskResumeFromISR(handle_tarea_pulsador);
+    BaseType_t despertar_tarea = pdFALSE;
+    despertar_tarea = xTaskResumeFromISR(handle_tarea_pulsador);
+    if (despertar_tarea == pdTRUE)
+    {
+        portYIELD_FROM_ISR();
+    }
 }
 
 static void tarea_pulsador(void *pvParameters)

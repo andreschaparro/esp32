@@ -26,11 +26,19 @@ Primero, debemos configurar la entrada para que genere una interrupcion:
 NOTA 1: La ISR debera tener como argumento _void \*args_.
 NOTA 2: La ISR debera tener como atributo _IRAM_ATTR_ en su declaracion.
 
-## Funciones de FreeRTOS dentro de una ISR
+## Contenido de la ISR
 
-Las funciones de FreeRTOS, como las que vimos en el ejemplo 4 de tareas, tienen su variante cuando se utilizan dentro de una ISR. Por ejemplo, _xTaskResumeFromISR()_.
+Las funciones de FreeRTOS, como las que vimos en el ejemplo 4 de tareas, tienen su variante cuando se utilizan dentro de una ISR. Por ejemplo, _xTaskResumeFromISR()_. Es decir, agregan el sufijo _FromISR_.
 
-Por el momento, no verificaremos el valor que retorna _xTaskResumeFromISR()_. Mas adelante, veremos sincronizacion de taras y los problemas del uso de esta funcion.
+1. Crear una variable del tipo _BaseType_t_ llamada **despertar_tarea**.
+2. Inicializarla en _pdFALSE_.
+3. Llamar a la funcion _xTaskResumeFromISR()_.
+4. Pasarle como parametro _handle_tarea_pulsador_.
+5. Guardar el calor retornado en **despertar_tarea**.
+6. Preguntar con if si **despertar_tarea** es igual a _pdTRUE_.
+7. En caso afirmativo, llamar a la macro _portYIELD_FROM_ISR()_.
+
+NOTA: Las variables globales que sean modificadas desde la ISR deberan tener el atributo _volatile_.
 
 ## Manejo de errores en ESP-IDF
 

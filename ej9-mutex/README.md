@@ -24,6 +24,6 @@ Las funciones para tomar y dar son las mismas que las del semaforo binario.
 
 ## Otros problemas que pueden aparecer
 
-Una de dos tareas de mayor prioridad que una tercera, nunca dejen que esta ultima tome el recurso. Esto, se conoce inanicion (starvation).
+Dos tareas de mayor prioridad que una tercera, se alternan y nunca dejen que esta ultima tome el recurso. Esto, se conoce inanicion (starvation).
 
 Ya se lo menciono en el ejemplo de semaforos y se llamaba punto muerto o interbloqueo (deadlock). En este caso, tambien puede producirse, cuando dos o mas tareas tratan de tomar recursos utilizados por la otra tarea, bloqueandose indefinidamente.
