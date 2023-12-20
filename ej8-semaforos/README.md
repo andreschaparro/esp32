@@ -1,26 +1,24 @@
 # Ejemplo 8: Semaforos en FreeRTOS
 
-Resuelve procesos de sincronizacion, asi como las colas resuelven el problema de intercambio de datos entre tareas.
+Resuelven procesos de sincronizacion, asi como las colas resuelven la comunicacion entre tareas.
 
 Un semaforo es un numero entero que se inicializa en un valor mayor a 0. Luego, se lo puede incrementar o decrementar en 1.
 
 Cuando una tarea decrementa el semaforo, si el resultado es negativo, la tarea se bloquea hasta que otra lo incremente.
 
-El primer uso practico de un semaforo, es la señalizacion. Es decir, que una tarea le avise a otra que algo paso. Lo que nos permite, que algo se ejecute antes que otra cosa. Esto resuelve lo que se conoce como problema de serializacion.
+Un semaforo se utiliza para resolver un problema de serializacion mediante la señalizacion. Es decir, que algo se ejecute antes que otra cosa si o si. Por ejemplo, que una tarea o una isr le avise a otra tarea que algo paso para que actue.
 
-NOTA: La prioridad del que avisa debe ser menor que la del que espera el desbloqueo si corren en el mismo CORE.
-
-NOTA: La señalizacion puede hacer en ambos sentidos, si consideramos que cada tarea tiene dos partes. Asi, la primera parte de la tarea 2 depende del fin de la primera parte de la tarea 1. Luego, el fin de la segunda parte de la tarea 1 depende del fin de la segunda parte de la tarea 2. En estos casos, se debe tener cuidad con los puntos muerto o interbloqueos (deadlocks).
+NOTA: La señalizacion puede hacer en ambos sentidos. Por ejemplo, si consideramos que 2 tareas estan compuestas por 2 segmentos de codigo. Si, el incio del primer segmento de la tarea 2 depende de fin del primer segmento de la tarea 1. Y luego, el inicio del segundo segmento de la tarea 1 depende del fin del segundo segmento de la tarea 2. Se debe tener cuidad con los puntos muerto o interbloqueos (deadlocks).
 
 En FreeRTOS hay 3 tipos de semaforos:
 
 - Binarios que pueden valer 0 o 1.
 - Contador que puede valer 0, 1, 2, 3, ...
-- Mutex que puede valer 0 o 1.
+- Mutex que puede valer 0 o 1 con un algoritmo que se vera en el ejemplo 9.
 
-El ejemplo, nos permitira reescribir el codigo del ejemplo 6 utilizando dos tareas y un semaforo binario. La primera, lee el pulsador por polling. La segunda, invierte el estado del led. Ambas tareas, correran en el CORE_1 con diferente prioridad.
+El ejemplo, nos permitira reescribir el codigo del ejemplo 6 utilizando dos tareas, una isr, y un semaforo binario. La primera tarea, inicializa el pulsador. Luego, la ISR, libera un semaforo binario cuando se presiona el pulsador. Y, finalmente La segunda tarea invierte el estado del led cuando pueda tomar el semaforo.
 
-Como primero es necesario leer el pulsador para luego invertir el estado del led. Este es un ejemplo de señalizacion.
+Se vuelve un requisito que primero se presione el pulsador para luego modificar el estado del led. Por lo que, es un ejemplo de serializacion.
 
 ## Crear un semaforo binario
 
@@ -32,10 +30,20 @@ Como primero es necesario leer el pulsador para luego invertir el estado del led
 
 NOTA: Un semaforo binario siempre se crea tomado.
 
-## Dar un semaforo binario
+## Dar un semaforo binario desde una ISR
 
-1. Llamar a la macro _xSemaphoreGive()_.
-2. Pasarle como parametro **sem_bin**.
+1. Crear una variable del tipo _BaseType_t_ llamada **despertar_tarea**.
+2. Inicializarla en _pdFALSE_.
+3. Llamar a la macro _xSemaphoreGiveFromISR()_.
+4. Pasarle como primer parametro **sem_bin**.
+5. Pasarle como primer parametro la direccion de **despertar_tarea**.
+6. Preguntar con if si **despertar_tarea** es igual a _pdTRUE_.
+7. En caso afirmativo, llamar a la macro _portYIELD_FROM_ISR()_.
+
+NOTA: usar este metodo y no la funcion _xTaskResumeFromISR()_ como en el ejemplo 6.
+
+Nota: en caso de dar el semaforo desde una tarea usar _xSemaphoreGive()_.
+s
 
 ## Tomar un semaforo binario
 

@@ -17,6 +17,7 @@ static SemaphoreHandle_t sem_bin = NULL;
 static TaskHandle_t handle_tarea_pulsador = NULL;
 static TaskHandle_t handle_tarea_led = NULL;
 
+static void pulsador_isr_handler(void *args);
 static void tarea_pulsador(void *pvParameters);
 static void tarea_led(void *pvParameters);
 
@@ -40,11 +41,21 @@ void app_main(void)
         "Tarea Led",
         4096,
         NULL,
-        (tskIDLE_PRIORITY + 2U),
+        (tskIDLE_PRIORITY + 1U),
         &handle_tarea_led,
         APP_CPU_NUM);
     configASSERT(ret == pdPASS);
     vTaskDelete(NULL);
+}
+
+static void IRAM_ATTR pulsador_isr_handler(void *args)
+{
+    BaseType_t despertar_tarea = pdFALSE;
+    xSemaphoreGiveFromISR(sem_bin, &despertar_tarea);
+    if (despertar_tarea == pdTRUE)
+    {
+        portYIELD_FROM_ISR();
+    }
 }
 
 static void tarea_pulsador(void *pvParameters)
@@ -52,12 +63,11 @@ static void tarea_pulsador(void *pvParameters)
     ESP_ERROR_CHECK(gpio_set_direction(pulsador, GPIO_MODE_INPUT));
     ESP_ERROR_CHECK(gpio_pullup_en(pulsador));
     ESP_ERROR_CHECK(gpio_pulldown_dis(pulsador));
+    ESP_ERROR_CHECK(gpio_set_intr_type(pulsador, GPIO_INTR_NEGEDGE));
+    ESP_ERROR_CHECK(gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT));
+    ESP_ERROR_CHECK(gpio_isr_handler_add(pulsador, pulsador_isr_handler, NULL));
     for (;;)
     {
-        if (gpio_get_level(pulsador) == 0)
-        {
-            xSemaphoreGive(sem_bin);
-        }
         vTaskDelay(delay_10_ms);
     }
 }
