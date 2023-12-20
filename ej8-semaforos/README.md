@@ -16,6 +16,10 @@ En FreeRTOS hay 3 tipos de semaforos:
 - Contador que puede valer 0, 1, 2, 3, ...
 - Mutex que puede valer 0 o 1 con un algoritmo que se vera en el ejemplo 9.
 
+Incluir la biblioteca:
+
+- "freertos/semphr.h"
+
 El ejemplo, nos permitira reescribir el codigo del ejemplo 6 utilizando dos tareas, una isr, y un semaforo binario. La primera tarea, inicializa el pulsador. Luego, la ISR, libera un semaforo binario cuando se presiona el pulsador. Y, finalmente La segunda tarea invierte el estado del led cuando pueda tomar el semaforo.
 
 Se vuelve un requisito que primero se presione el pulsador para luego modificar el estado del led. Por lo que, es un ejemplo de serializacion.
