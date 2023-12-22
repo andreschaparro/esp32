@@ -8,7 +8,7 @@
 static const char *tag = "MUTEX";
 
 static const TickType_t delay_1000_ms = pdMS_TO_TICKS(1000);
-static const TickType_t delay_3000_ms = pdMS_TO_TICKS(5000);
+static const TickType_t delay_5000_ms = pdMS_TO_TICKS(5000);
 
 static uint32_t contador;
 
@@ -71,6 +71,6 @@ static void tarea_sumar_2(void *pvParameters)
             ESP_LOGD(tag, "Despues de Sumar 2 : %" PRIu32, contador);
             xSemaphoreGive(mux);
         }
-        vTaskDelay(delay_3000_ms);
+        vTaskDelay(delay_5000_ms);
     }
 }
