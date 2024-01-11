@@ -90,3 +90,12 @@ Los ADC del ESP32 son muy sensibles al ruido. Se recomienda conectar un capacito
 Otra opcion, es almacenar varias muestras en un buffer circular e ir promediando la sumatoria de las mismas (Filtro Digital FIR).
 
 ![Ruido](/ej12-adc/ruido.png "Ruido")
+
+## Atenuador
+
+Los posibles valores de atenuador que se pueden completar en los miembros _atten_ son los siguientes:
+
+- ADC_ATTEN_DB_0 que permite medir de 100 a 950mV.
+- ADC_ATTEN_DB_2_5 que permite medir de 100 a 1250mV.
+- ADC_ATTEN_DB_6 que permite medir de 150 a 1750mV.
+- ADC_ATTEN_DB_11 que permite medir de 150 a 2450mV.
