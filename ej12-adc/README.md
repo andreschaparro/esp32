@@ -10,7 +10,7 @@ Ambos ADC del ESP32 puede leer tensiones de 0 a 3,3V. Las que convierte en valor
 
 Sin embargo, tienen un comportamiento **alineal**. Tal es asi, que 3,3V y 3,2V daran el mismo valor de 4095:
 
-![Alinealidad](/curva.png "Alinealidad")
+![Alinealidad](/ej12-adc/curva.png "Alinealidad")
 
 Los canales del _ADC_UNIT_1_ son:
 
@@ -89,4 +89,4 @@ Los ADC del ESP32 son muy sensibles al ruido. Se recomienda conectar un capacito
 
 Otra opcion, es almacenar varias muestras en un buffer circular e ir promediando la sumatoria de las mismas (Filtro Digital FIR).
 
-![Ruido](/ruido.png "Ruido")
+![Ruido](/ej12-adc/ruido.png "Ruido")
