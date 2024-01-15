@@ -72,7 +72,7 @@ NOTA: Repetir para cada canal lo anterior.
 
 El resultado quedara almacenado en la variable _raw_result_.
 
-## Leer el valor en mV de un canal
+## Ejemplo 12: Leer el valor en mV de un canal
 
 1. Crear una variable llamada _mv_result_ del tipo _int_.
 2. Llamar a la funcion _adc_cali_raw_to_voltage_.

@@ -1,4 +1,4 @@
-# Software Timer en FreeRTOS
+# Ejemplo 10: Software Timer en FreeRTOS
 
 Los timers sirven para generar eventos de _timeout_ y a futuro ejecutar una funcion de _callback_.
 

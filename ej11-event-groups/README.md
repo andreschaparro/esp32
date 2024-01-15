@@ -1,4 +1,4 @@
-# Event Groups en FreeRTOS
+# Ejemplo 11: Event Groups en FreeRTOS
 
 Es otra solucion para problemas de sincronizacion. Es diferente a semaforos y mutex.
 
