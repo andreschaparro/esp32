@@ -1,4 +1,4 @@
-# Uso de los ADC del ESP32 en ESP-IDF
+# Ejemplo 12: Uso de los ADC del ESP32 en ESP-IDF
 
 ## Introduccion
 

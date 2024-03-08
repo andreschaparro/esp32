@@ -18,7 +18,7 @@ Tambien, se repasan los temas: tareas y colas.
    - El miembro _pin_bit_mask_ deve valer _(1ULL << pulsador)_. La misma, es una expresiones que mediante el operador _OR_ permite afectar mas de una entrada al mismo tiempo.
 2. Llamar a la funcion _gpio_config_.
 3. Pasarle como primer parametro un puntero a _io_cfg_.
-4. Verificar el valor retornado con la macro ESP_ERROR_CHECK.
+4. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 
 ## Configurar varias salidas en simultaneo
 
@@ -30,7 +30,7 @@ No hace falta crear otra variable, puede reutilizarse \_io_cfg.
 4. El miembro _pin_bit_mask_ de _io_cfg_ deve valer _(1ULL << led)_. La misma, es una expresiones que mediante el operador _OR_ permite afectar mas de una salida al mismo tiempo.
 5. Llamar a la funcion _gpio_config_.
 6. Pasarle como primer parametro un puntero a _io_cfg_.
-7. Verificar el valor retornado con la macro ESP_ERROR_CHECK.
+7. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 
 ## Pasaje de parametros a una ISR
 
