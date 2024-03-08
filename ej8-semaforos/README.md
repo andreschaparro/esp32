@@ -40,7 +40,7 @@ NOTA: Un semaforo binario siempre se crea tomado.
 2. Inicializarla en _pdFALSE_.
 3. Llamar a la macro _xSemaphoreGiveFromISR()_.
 4. Pasarle como primer parametro **sem_bin**.
-5. Pasarle como primer parametro la direccion de **despertar_tarea**.
+5. Pasarle como segundo parametro la direccion de **despertar_tarea**.
 6. Preguntar con if si **despertar_tarea** es igual a _pdTRUE_.
 7. En caso afirmativo, llamar a la macro _portYIELD_FROM_ISR()_.
 

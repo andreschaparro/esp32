@@ -44,6 +44,7 @@ void app_main(void)
         &handle_tarea_frecuencimetro,
         APP_CPU_NUM);
     configASSERT(ret == pdPASS);
+    vTaskDelete(NULL);
 }
 
 static void tarea_generador(void *pvParameters)
