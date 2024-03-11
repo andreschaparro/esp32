@@ -34,4 +34,4 @@ Este ejemplo es integrador porque:
 - Utilizamos los semaforos binarios de _FreeRTOS_ para resolver el problema de serializacion.
 - Utilizamos un mutex de _FreeRTOS_ para evitar el acceso simultaneo a un recurso compartido.
 - Documentamos con _Doxygen_.
-- Repasamos C usando: typedef, enum, switch case, arrays.
+- Repasamos _C_ usando: _typedef_, _enum_, _switch case_, y _arrays_.

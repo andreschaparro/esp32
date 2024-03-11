@@ -5,22 +5,29 @@
 Veremos como separar nuestro programa en varios archivos _.h_ y _.c_ para:
 
 - Favorecer la lectura del programa. Si nos fijamos, los ultimos 2 ejemplos llegan a 200 lineas de codigo o mas.
-- Portabilidad.
-- Reutilizacion.
+- Tener portabilidad.
+- Poder reutilizar codigo.
 
 Los _.c_ tendrán un contenido de caracter privado.
 
 Los _.h_ nos permitiran acceder a las funciones en los _.c_. Es decir, representan lo publico.
 
-Asi, el conjunto de archivos estara dentro de una carpeta, conformando lo que es un modulo.
+Asi, el conjunto de archivos estara dentro de una carpeta, conformando lo que es un modulo. Permitiendonos, acceder a ciertas funciones declaradas en el _.h_
 
-En el ejemplo, crearemos 3 tareas utilizando la misma funcion que estará definida en un modulo llamado _task_function_.
+En el ejemplo, crearemos 3 tareas utilizando la misma funcion. Cuya definicion, estara en el modulo llamado _task_function_ y tendra su mismo nombre.
 
-Adicionalmente, veremos como pasar un parametro para distinguir a cada una de las 3 tareas.
+La _task_function_, recibira un puntero a una estructura. Y, a traves del puntero, obtendremos los datos que nos permitiran reutilizar el codigo para:
+
+- Hacer parpadear un led o dejarlo fijo.
+- Leer un pulsador y cambiar el comportamiento del led.
+
+NOTA: Repasar las directivas _#ifndef_, _#define_, y _#endif_ y su uso como guarda en los archivos _.h_.
 
 NOTA: Repasar el uso de la palabra reservada _static_ tanto en variables como en funciones.
 
-NOTA: Repasar las directivas _#ifndef_, _#define_, y _#endif_ y su uso como guarda en los archivos _.h_.
+NOTA: Repasar estructuras en C.
+
+NOTA: N usar _extern_ porque rompe el concepto de encapsulamiento de los modulos.
 
 ## Creacion de directorios y archivos
 
@@ -39,6 +46,11 @@ NOTA: Repasar las directivas _#ifndef_, _#define_, y _#endif_ y su uso como guar
 
 ## Conclusiones
 
-- Evitar el uso de _extern_ porque rompe el concepto de encapsulamiento.
-- Este metodo, es el mas generico y ofrece compatibilidad con otras plataformas.
-- Una forma mas util, en caso de querer distribuir codigo, como por ejemplo el de un driver, es utilizar _components_.
+Este es un ejemplo integrador porque:
+
+- Utilizamos tareas de FreeRTOS y les pasamos parametros a las mismas.
+- Particionamos nuestro codigo y reducimos su tamaño mediante la modularizacion.
+- Repasamos el uso de las GPIO.
+- Repasamos C usando: directivas del precompilador, _typedef_, _enum_, _arrays_, y _struct_.
+
+NOTA: Otra forma mas util de generar modulos, por ejemplo, en el caso de querer distribuir codigo es utilizar _components_. El caso tipico, es el desarrollo de un driver para un periferico externo.
