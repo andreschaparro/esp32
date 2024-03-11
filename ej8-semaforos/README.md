@@ -53,7 +53,7 @@ s
 
 1. Llamar a la macro _xSemaphoreTake()_.
 2. Pasarle como primer parametro **sem_bin**.
-3. Pasarle como segundo parametro 5 casteado como _(TickType_t)_. Este valor, es la cantidad de ticks a esperar si el semafoto esta tomado con la tarea bloqueada. En caso de poner 0, la macro se vuelve no bloqueante.
+3. Pasarle como segundo parametro 5 casteado como _(TickType_t)_. Este valor, es la cantidad de ticks a esperar si el semafoto esta tomado con la tarea bloqueada. En caso de poner 0, la macro se vuelve no bloqueante. _portMAX_DELAY_ es lo maximo que se puede esperar.
 4. Si el valor devuelto por _xSemaphoreTake()_ es igual a _pdTRUE_ se pudo tomar el semaforo.
 
 ## Crear, dar, y tomar de un semaforo contador

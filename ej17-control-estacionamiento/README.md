@@ -1,26 +1,24 @@
-# Ejemplo 16: Control de acceso a un puente de un solo sentido
+# Ejemplo 17: Control de un estacionamiento
 
 ## Introduccion
 
-Hay un puente, donde cada extremo se llama _A_ y _B_ respectivamente.
+Hay un estacionamiento, con un punto de ingreso y otro de egreso.
 
-En el mismo, se permite el paso de un solo vehiculo a la vez.
+La capacidad es limitada.
 
-Siempre, ingresan al puente por orden de llegada.
+Siempre, ingresan al puente por orden de llegada y de a uno.
 
 Se sugiere el uso de 2 tareas para:
 
-- _tarea_a_: para controlar el ingreso/egreso en el extremo _A_.
-- _tarea_b_: para controlar el ingreso/egreso en el extremo _B_.
+- _tarea_a_: para controlar el ingreso.
+- _tarea_b_: para controlar el egreso.
 
 Luego, para simular los estimulos de ingreso/egreso en ambos puntos, utilizar una tercer tarea llamada _tarea_test_.
 
 La misma, debera generar la siguiente secuencia periodica de estimulos:
 
-- **ENTRY_A**
-- **ENTRY_B**
-- **EXIT_A**
-- **EXIT_B**
+- **ENTRY**
+- **EXIT**
 
 Todo debe ejecutarse en el _APP_CPU_NUM_.
 
