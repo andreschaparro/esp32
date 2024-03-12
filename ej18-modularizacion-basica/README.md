@@ -51,6 +51,7 @@ Este es un ejemplo integrador porque:
 - Utilizamos tareas de FreeRTOS y les pasamos parametros a las mismas.
 - Particionamos nuestro codigo y reducimos su tamaño mediante la modularizacion.
 - Repasamos el uso de las GPIO.
-- Repasamos C usando: directivas del precompilador, _typedef_, _enum_, _arrays_, y _struct_.
+- Repasamos _C_ usando: directivas del precompilador, _typedef_, _enum_, _arrays_, y _struct_.
+- Repasamos funciones de _get_ (muy similares a las de _set_) para mantener el encapsulamiento.
 
 NOTA: Otra forma mas util de generar modulos, por ejemplo, en el caso de querer distribuir codigo es utilizar _components_. El caso tipico, es el desarrollo de un driver para un periferico externo.

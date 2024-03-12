@@ -13,9 +13,15 @@ typedef enum
 
 typedef enum
 {
-    ON,
     OFF,
+    ON,
 } led_status_t;
+
+typedef enum
+{
+    PRESSED,
+    NOT_PRESSED,
+} pulsador_status_t;
 
 static const char *tag = "MODULARIZACION-BASICA";
 
@@ -31,11 +37,13 @@ void task_function(void *pvParameters)
     gpio_set_direction(data->pulsador, GPIO_MODE_INPUT);
     gpio_pullup_en(data->pulsador);
     gpio_pulldown_dis(data->pulsador);
+    pulsador_status_t estado_pulsador;
     char *nombre_tarea = (char *)pcTaskGetName(NULL);
     for (;;)
     {
         ESP_LOGD(tag, "%s Running", nombre_tarea);
-        if (gpio_get_level(data->pulsador) == 0)
+        estado_pulsador = gpio_get_level(data->pulsador);
+        if (estado_pulsador == PRESSED)
         {
             if (modo_led == BLINKING)
             {

@@ -7,7 +7,7 @@
 
 enum task_index
 {
-    TAREA_1 = 0,
+    TAREA_1,
     TAREA_2,
     TAREA_3,
 };
@@ -30,8 +30,6 @@ static const task_data_t task_data_array[] = {
         },
 };
 
-static const char *tag = "MODULARIZACION-BASICA";
-
 static TaskHandle_t handle_tarea_1 = NULL;
 static TaskHandle_t handle_tarea_2 = NULL;
 static TaskHandle_t handle_tarea_3 = NULL;
@@ -39,9 +37,7 @@ static TaskHandle_t handle_tarea_3 = NULL;
 void app_main(void)
 {
     BaseType_t ret;
-    uint32_t index;
     esp_log_level_set(get_tag(), ESP_LOG_DEBUG);
-    index = 1;
     ret = xTaskCreatePinnedToCore(
         task_function,
         "Tarea 1",
@@ -51,7 +47,6 @@ void app_main(void)
         &handle_tarea_1,
         APP_CPU_NUM);
     configASSERT(ret == pdPASS);
-    index = 2;
     ret = xTaskCreatePinnedToCore(
         task_function,
         "Tarea 2",
@@ -61,7 +56,6 @@ void app_main(void)
         &handle_tarea_2,
         APP_CPU_NUM);
     configASSERT(ret == pdPASS);
-    index = 3;
     ret = xTaskCreatePinnedToCore(
         task_function,
         "Tarea 3",
@@ -71,4 +65,5 @@ void app_main(void)
         &handle_tarea_3,
         APP_CPU_NUM);
     configASSERT(ret == pdPASS);
+    vTaskDelete(NULL);
 }
