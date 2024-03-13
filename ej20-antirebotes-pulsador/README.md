@@ -1,4 +1,4 @@
-# Ejemplo 20: Antirebotes para un pulsador utilizando maquinas de estado
+# Ejemplo 20: Antirebotes para un pulsador utilizando maquinas de estado con FreeRTOS
 
 ## Introduccion
 
