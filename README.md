@@ -24,7 +24,7 @@ Tambien utilizaremos FreeRTOS que es un RTOS apropiativo (preemptive). Por lo cu
 
 Estos ejemplos, constituyen la primer etapa de este proyecto. En la siguiente, espero poder desarrollar un conjunto de videos para acompañarlos. Y finalmente, culiminar el proyecto con la publicacion de un libro.
 
-Como extra, se incluye una seccion de practicas a resolver y una posible solucion. Los invito a que hagan las suyas, sino no hay ninguna forma de aprender.
+Los invito a que hagan sus propios programa y no a clonar el repositorio unicamente para probar los ejemplos. Sino, no hay ninguna forma de aprender.
 
 Sin mas preambulos ¡Empecemos a programar!
 
