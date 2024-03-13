@@ -1,4 +1,4 @@
-# Ejemplo 17: Control de un estacionamiento
+# Ejemplo 17: Control de un estacionamiento con FreeRTOS
 
 ## Introduccion
 
