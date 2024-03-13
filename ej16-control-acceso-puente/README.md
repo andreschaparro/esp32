@@ -1,4 +1,4 @@
-# Ejemplo 16: Control de acceso a un puente de un solo sentido
+# Ejemplo 16: Control de acceso a un puente de un solo sentido con FreeRTOS
 
 ## Introduccion
 
