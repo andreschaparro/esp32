@@ -1,4 +1,4 @@
-# Ejemplo 13: Control del brillo de un led utilizando PWM con modulo LEDC
+# Ejemplo 13: Control del brillo de un led utilizando PWM con modulo LEDC en ESP-IDF
 
 ## Introduccion
 
