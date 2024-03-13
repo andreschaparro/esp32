@@ -1,4 +1,4 @@
-# Ejemplo 14: Medicion de frecuencia utilizando el modulo PCNT
+# Ejemplo 14: Medicion de frecuencia utilizando el modulo PCNT en ESP-IDF
 
 ## Introduccion
 
