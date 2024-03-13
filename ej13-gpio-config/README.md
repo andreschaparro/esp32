@@ -1,4 +1,4 @@
-# Ejemplo 13: Uso de gpio_config_t para inicializar varias GPIO en simultaneo
+# Ejemplo 13: Uso de gpio_config_t para inicializar varias GPIO en simultaneo en ESP-IDF
 
 En el ejemplo, el pulsador y el led se inicializan utilizando el tipo gpio_config_t (es una estructura). Este metodo, permite inicialziar varias entradas y varias salidas al mismo tiempo.
 
