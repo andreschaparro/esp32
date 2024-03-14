@@ -29,7 +29,7 @@ Bibliotecas a incluir:
 ## Inicializacion del ADC_UNIT_1
 
 1. Crear una variable llamada _adc1_handle_ del tipo _adc_oneshot_unit_handle_t_.
-2. Crear una variable llamada _adc1_init_cfg_ del tipò _adc_oneshot_unit_init_cfg_t_:
+2. Crear una variable llamada _adc1_init_cfg_ del tipo _adc_oneshot_unit_init_cfg_t_:
    - El miembro _unit_id_ debe valer _ADC_UNIT_1_.
    - El miembro _ulp_mode_ debe valer _ADC_ULP_MODE_DISABLE_.
 3. Llamar a la funcion _adc_oneshot_new_unit_.

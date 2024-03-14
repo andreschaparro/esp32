@@ -10,6 +10,8 @@ En este caso, veremos como hacerlo utilizando una maquina de estados finitos o _
 
 Una maquina de estados, permiten modelar un sistema graficamente mediante un diagrama o una tabla.
 
+![Diagrama de Estados](/ej20-antirebotes-pulsador/diagrama.png "Diagrama de Estados")
+
 Basicamente, se va cambiando de un estado a otro mediante transiciones.
 
 En principio, exiten dos tipos de _MEF_: _Moore_ y _Mealy_.
