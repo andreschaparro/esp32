@@ -1,4 +1,4 @@
-# Ejemplo 19: Modularizacion con Components
+# Ejemplo 19: Modularizacion con Components en ESP-IDF
 
 ## Introduccion
 
