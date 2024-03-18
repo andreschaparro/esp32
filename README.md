@@ -6,7 +6,7 @@ Los ejemplos fueron hechos con la version 5.1.2 del SDK.
 
 Y, el hardware utilizado fue la placa:
 
-- https://esphome.io/devices/nodemcu_esp32.html
+![Placa](/pinout.png "Placa")
 
 El objetivo de este proyecto, es ayudar a estudiantes y profesionales a dar sus primeros pasos con este microcontrolador sin utilizar el ESP-Arduino. Que en si, es una capa de abstraccion o wrapper sobre el ESP-IDF.
 
