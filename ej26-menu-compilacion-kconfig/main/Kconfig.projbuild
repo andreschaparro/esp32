@@ -1,0 +1,28 @@
+menu "Mi Menu de Configuracion"
+
+config MY_BOOL
+    bool "seleccione si o no"
+
+config MY_STRING
+    string "Ingrese una cadena de texto"
+    default "Hola mundo!"
+        help
+            texto de ayuda
+
+config MY_INT
+    int "Ingrese un numero entero de 1 a 15"
+    range 1 15
+    
+config MY_CHOICE
+    choice
+        bool "Elija una opcion"
+            default OPTION_1
+        config OPTION_1
+            bool "Esta es la opcion 1"
+        config OPTION_2
+            bool "Esta es la opcion 2"
+        config OPTION_3
+            bool "Esta es la opcion 3"
+    endchoice
+
+endmenu
