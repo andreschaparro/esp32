@@ -11,6 +11,7 @@ typedef enum
     ON,
 } led_status_t;
 
+static const TickType_t debounce_time_50_ms = pdMS_TO_TICKS(50);
 static const TickType_t delay_10_ms = pdMS_TO_TICKS(10);
 
 static const gpio_num_t led = GPIO_NUM_2;
@@ -19,7 +20,8 @@ static SemaphoreHandle_t sem_led = NULL;
 
 static debounce_data_t pulsador = {
     .input = GPIO_NUM_32,
-    .debounce_time_ms = pdMS_TO_TICKS(40),
+    .debounce_time_ms = debounce_time_50_ms,
+    .delay_time_ms = delay_10_ms,
 };
 
 static void task_pulsador(void *pvParameters);
@@ -76,7 +78,7 @@ static void task_led(void *pvParameters)
     gpio_set_level(led, led_status);
     for (;;)
     {
-        if (xSemaphoreTake(sem_led, (TickType_t)5) == pdTRUE)
+        if (xSemaphoreTake(sem_led, portMAX_DELAY))
         {
             if (led_status == OFF)
             {

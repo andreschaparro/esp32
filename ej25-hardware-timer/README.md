@@ -7,16 +7,16 @@ FreeRTOS provee software timers como se vio en el ejemplo 10.
 Pero estos timers, tienen limitaciones:
 
 - Duracion del tick.
-- Baja prioridad de las funciones de callback que en un entorno apropiativo pueden causar problemas de prescicion.
+- Baja prioridad de las funciones de callback, que en un entorno apropiativo, pueden producir que no se cumplan las temporizaciones con la presicion necesaria.
 
-Los timers por hardware, o hardware timers, o high resolution timer, o _Esp Timer_ no tienen estas limitaciones.
+Los timers por hardware, o hardware timers, o high resolution timer, o _Esp Timer_ no tienen estas limitaciones. Por ejemplo, permiten definir tiempos en microsegundos.
 
 Se pueden crear dos tipos de timers:
 
-- Periodicos.
+- Periodico.
 - Oneshot.
 
-En el ejemplo, crearemos un timer periodico que se actice cada 0.5s. Luego, con el one-shot cambiaremos el periodo a 1s pasados 5 segundos del arranque.
+En el ejemplo, crearemos un timer periodico que se dispare cada 0.5s. Luego, con otro del tipo one-shot cambiaremos el periodo a 1s, pasados 5 segundos del arranque del _ESP32_.
 
 Bibliotecas a incluir:
 

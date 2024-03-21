@@ -27,7 +27,7 @@ NOTA: Repasar el uso de la palabra reservada _static_ tanto en variables como en
 
 NOTA: Repasar estructuras en C.
 
-NOTA: N usar _extern_ porque rompe el concepto de encapsulamiento de los modulos.
+NOTA: No usar _extern_ porque rompe el concepto de encapsulamiento de los modulos.
 
 ## Creacion de directorios y archivos
 

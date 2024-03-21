@@ -1,0 +1,12 @@
+idf_component_register(
+    SRCS 
+        "main.c"
+        "api_dado/api_dado.c"
+        "api_ssd1306/api_ssd1306.c"
+        "api_debounce/api_debounce.c"
+    INCLUDE_DIRS 
+        "."
+        "api_dado"
+        "api_ssd1306"
+        "api_debounce"
+)

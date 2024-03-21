@@ -23,6 +23,11 @@
     "freertos.h": "c",
     "task.h": "c",
     "ssd1306.h": "c",
-    "clk_tree_defs.h": "c"
+    "clk_tree_defs.h": "c",
+    "lvgl.h": "c",
+    "esp_lvgl_port.h": "c",
+    "i2c.h": "c",
+    "esp_lcd_panel_io.h": "c",
+    "esp_lcd_panel_ops.h": "c"
   }
 }
