@@ -1,4 +1,4 @@
-# Ejemplo 28: Analisis de los tipos de memoria en el ESP32 con ESP-IDF
+# Ejemplo 28: Analisis de la de memoria en el ESP32 con ESP-IDF y FreeRTOS
 
 ## Introduccion arquitectura fisica
 
