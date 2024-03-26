@@ -1,5 +1,7 @@
 # Ejemplo 4: Crear, eliminar, suspender, y reanudar Tareas en FreeRTOS
 
+![Tareas](/ej4-tareas/tareas.png "Tareas")
+
 Incluir las bibliotecas:
 
 - "freertos/FreeRTOS.h"
@@ -7,7 +9,7 @@ Incluir las bibliotecas:
 
 ## Crear una tarea
 
-En la \*app_main\*\* se crean las tareas. Luego, si no se le pone un loop infinito termina.
+En la _app_main_ se crean las tareas. Luego, si no se le pone un loop infinito termina.
 
 Llamar a la funcion _xTaskCreate_. A la que hay que pasarle los siguientes parametros:
 
