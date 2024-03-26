@@ -20,7 +20,7 @@ En el ejemplo, crearemos un timer periodico que se dispare cada 0.5s. Luego, con
 
 Bibliotecas a incluir:
 
-- _esp_timer.h_
+- **esp_timer.h**
 
 NOTA: las funciones de callback devuelven _void_ y reciben un _void\* args_.
 
