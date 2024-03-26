@@ -117,6 +117,8 @@ Solo es posible crear tareas de forma estatica con las funciones:
 - **xTaskCreateStatic**
 - **xTaskCreateStaticPinnedToCore**
 
+![Memoria](/ej28-memoria/memoria.png "Memoria")
+
 NOTA: Utilizar _vPortMalloc_ y _vPortFree_ en lugar de _malloc_ y _free_.
 
 ## Obtener el bloque de mayor tamaño disponible de DRAM en ESP-IDF
