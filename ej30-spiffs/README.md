@@ -37,8 +37,11 @@ Es necesario crear una particion dentro de la flash para almacenar el _SPIFFS_.
    \# Name, Type, SubType, Offset, Size, Flags
    
    nvs, data, nvs, 0x9000, 0x6000,
+   
    phy_init, data, phy, 0xf000, 0x1000,
+   
    factory, app, factory, 0x10000, 1M,
+   
    storage, data, spiffs, , 0xF0000,
 
 7. Volver a compilar.
