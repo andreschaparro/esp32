@@ -4,6 +4,8 @@
 
 Como se vio en el ejemplo 5 y en otros posteriores, al presionar un pulsador aparecer un efecto de rebotes.
 
+![Rebote](/ej20-antirebotes-pulsador/rebote.png "Rebote")
+
 Una forma de eliminarlos, es por hardware utilizando redes R-C. La otra, es por software.
 
 En este caso, veremos como hacerlo utilizando una maquina de estados finitos o _MEF_. No obstante, hay otros algotirmos mas sencillos.

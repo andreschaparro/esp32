@@ -34,7 +34,7 @@ Para cambiar el estado del led:
 2. Pasarle como primer parametro la variable _led_.
 3. Pasarle como segundo parametro 0 para apagarlo o 1 para encenderlo.
 
-## Delay
+## Uso de vTaskDelay
 
 El ESP32 tien 2 COREs, uno es el _CORE_0_ y el otro el _CORE_1_, llamados _PRO_CPU_ y _APP_CPU_ respectivamente.
 
@@ -42,18 +42,16 @@ El _app_main_ se ejecuta en el _CORE_0_ y es la unica tarea de FreeRTOS que exis
 
 FreeRTOS es apropiativo (preemptive). Asi, que si entramos al loop infinito de nuestra unica tarea, debemos ceder el uso del CPU periodicamente para evitar que se produzca un error y se reinicie el ESP32.
 
-Para ello, se utiliza la funcion _vTaskDelay()_.
+Para ello, se utiliza la funcion _vTaskDelay_.
 
-Al hacer esto, ponemos a _app_main_ en estado de bloqueo durante un tiempo. Asi, el comportamiento que se obtiene es similar al de la funcion _delay()_ de Arduino.
+Al hacer esto, ponemos a _app_main_ en estado de bloqueo durante un tiempo. Lo que termina funcionando de forma similar al de la funcion _delay()_ de Arduino para este ejemplo.
 
-Otra opcion, es utilizar _vTaskDelayUnitl()_. Que incluye, dentro de la duracion del delay la ejecucion del codigo. A diferencia de _vTaskDelay()_, que ejecuta el codigo y luego empieza con el delay.
+Para inicializar y llamar a la funcion que genera el _vTaskDelay_:
 
-Para inicializar y llamar a la funcion que genera el delay:
-
-1. Crear una variable llamada _delay_1000_ms_ y del tipo _const TickType_t_.
+1. Crear una constante llamada _delay_1000_ms_ y del tipo _TickType_t_.
 2. Asignale como valor el numero de ticks devuelto por la macro _pdMS_TO_TICKS()_.
 3. Pasarle como parametro 1000, que el el tiempo de demora en ms.
-4. Llamar a la funcion _vTaskDelay()_ dentro del loop infinito.
+4. Llamar a la funcion _vTaskDelay_ dentro del loop infinito.
 5. Pasarle como parametro la variable _delay_1000_ms_.
 
 NOTA: el tipo _TickType_t_ se usa para guardar un numero de ticks de FreeRTOS.

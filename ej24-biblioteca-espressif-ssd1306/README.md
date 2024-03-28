@@ -17,6 +17,8 @@ Es un bus de comunicacion serie, pensado para interconectar perifericos externos
 - Tiene dos velocidades de clock: _Standard-mode_ de 100Khz y _Fast-mode_ de 400Khz.
 - Los dispositivos _I2C_ pueden tener una direccion de 7 o 10 bits.
 
+![Conexion I2C](/ej24-biblioteca-espressif-ssd1306/conexion_i2c.png "Conexion I2C")
+
 ![Comunicacion I2C](/ej24-biblioteca-espressif-ssd1306/comunicacion_i2c.png "Comunicacion I2C")
 
 El ESP32 tiene 2 controladores o ports _I2C_: _I2C_NUM_0_ y _I2C_NUM_1_.

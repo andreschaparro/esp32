@@ -2,11 +2,13 @@
 
 ## Introduccion
 
-El nvs esta pensado para almacenar pares _clave-valor_ en una porcion de la memoria _flash_.
+El _NVS_ esta pensado para almacenar pares _clave-valor_ en una particion de la memoria _flash_.
 
-La _flash_ esta dividida en porciones que tienen un: _name_, un _type_, y un _subtype_ que las identifica.
+Cada particion tiene un: _name_, un _type_, y un _subtype_ que las identifica.
 
-En este caso, el _name_ es _nvs_, el _type_ debe _data_, y el _subtype_ es _nvs_.
+En este caso, el _name_ es _nvs_, el _type_ debe _data_, y el _subtype_ es _nvs_ y viene configurada por defecto.
+
+NOTA: En el ejemplo 30 se vera como particionar la _flash_.
 
 Las _claves_ son strings de hasta 15 caracteres.
 
@@ -49,8 +51,7 @@ Bibliotecas a incluir:
 4. Pasarle como segundo parametro _NVS_READWRITE_ para poder leer y escribir. Caso contrario, pasarle _NVS_READONLY_ para solo leer.
 5. Pasarle como tercer parametro un puntero a _my_handle_.
 6. Guardar el valor retornado en _err_.
-7. Si el valor retornado es distinto de _ESP_OK_:
-   - Hacer un _ESP_LOGE_ del _%s_ retornado por la funcion _esp_err_to_name_ pasandole como parametro _err_.
+7. Si el valor retornado es distinto de _ESP_OK_, ver el contenido del _string_ retornado por la funcion _esp_err_to_name_, a la que se le pasa como parametro _ret_.
 8. Caso contrario, podremos proceder a leer y/o escribir pares _clave-valor_.
 
 ## Leer un par clave-valor en ESP-IDF
@@ -71,11 +72,11 @@ Bibliotecas a incluir:
 4. Pasarle como segundo parametro la _clave_.
 5. Pasarle como tercer parametro un puntero a la variable de destino creada en el paso 1.
 6. Guardar el valor retornado en _err_.
-7. Crear un _switch_ para los siguientes valores de _err_:
+7. Con un _switch_ evaluar los posibles valores de _err_:
    - _ESP_OK_ significa que el dato se leyo con exito y esta disponible en variable creada en el paso 1.
    - _ESP_ERR_NVS_NOT_FOUND_ significa que la _clave-valor_ no existe todavia.
    - _default_ hacer un _ESP_LOGE_ del _%s_ retornado por la funcion _esp_err_to_name_ pasandole como parametro _err_.
-  
+
 NOTA: Las funciones _nvs_get_str_ y _nvs_get_str_ pueden requerir otro parametros.
 
 ## Escribir un par clave-valor en ESP-IDF
@@ -98,7 +99,6 @@ NOTA: Las funciones _nvs_get_str_ y _nvs_get_str_ pueden requerir otro parametro
 6. Llamar a la funcion _nvs_commit_.
 7. Pasarle como parametro la variable _my_handle_.
 8. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
-
 
 NOTA: Las funciones _nvs_set_str_ y _nvs_set_blob_ pueden requerir otro parametros.
 

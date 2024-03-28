@@ -27,7 +27,7 @@ void app_main(void)
     ret = xTaskCreatePinnedToCore(
         tarea_2,
         "tarea 2",
-        4096,
+        (2 * configMINIMAL_STACK_SIZE),
         NULL,
         (tskIDLE_PRIORITY + 1U),
         &handle_tarea_2,
@@ -65,9 +65,11 @@ static void tarea_1(void *pvParameters)
 
 static void tarea_2(void *pvParameters)
 {
+    TickType_t previousWakeTime;
     for (;;)
     {
+        previousWakeTime = xTaskGetTickCount();
         ESP_LOGD(tag, "Ejecucion de la tarea 2 %" PRIu32, xTaskGetTickCount());
-        vTaskDelay(delay_1000_ms);
+        xTaskDelayUntil(&previousWakeTime, delay_1000_ms);
     }
 }
