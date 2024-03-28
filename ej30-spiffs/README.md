@@ -33,7 +33,9 @@ Es necesario crear una particion dentro de la flash para almacenar el _SPIFFS_.
 5. Copiar al archivo _partitions.csv_ el siguiente contenido:
 
    \# ESP-IDF Partition Table
+   
    \# Name, Type, SubType, Offset, Size, Flags
+   
    nvs, data, nvs, 0x9000, 0x6000,
    phy_init, data, phy, 0xf000, 0x1000,
    factory, app, factory, 0x10000, 1M,
