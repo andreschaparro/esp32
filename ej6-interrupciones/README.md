@@ -30,13 +30,17 @@ NOTA 2: La ISR debera tener como atributo _IRAM_ATTR_ en su declaracion.
 
 Las funciones de FreeRTOS, como las que vimos en el ejemplo 4 de tareas, tienen su variante cuando se utilizan dentro de una ISR. Por ejemplo, _xTaskResumeFromISR()_. Es decir, agregan el sufijo _FromISR_.
 
-1. Crear una variable del tipo _BaseType_t_ llamada **despertar_tarea**.
+1. Crear una variable del tipo _BaseType_t_ llamada _despertar_tarea_.
 2. Inicializarla en _pdFALSE_.
 3. Llamar a la funcion _xTaskResumeFromISR()_.
 4. Pasarle como parametro _handle_tarea_pulsador_.
-5. Guardar el calor retornado en **despertar_tarea**.
-6. Preguntar con if si **despertar_tarea** es igual a _pdTRUE_.
-7. En caso afirmativo, llamar a la macro _portYIELD_FROM_ISR()_.
+5. Guardar el calor retornado en _despertar_tarea_.
+6. Preguntar con if si _despertar_tarea_ es igual a _pdTRUE_.
+7. En caso afirmativo, llamar a la macro _portYIELD_FROM_ISR_.
+
+NOTA: _portYIELD_FROM_ISR_ fuerza un llamado al scheduler e indica el fin de una ISR.
+
+NOTA: _xTaskResumeFromISR_ con esta funcion le indicamos al scheduler que tarea debe reanudar. Si no la llamamos, buscara la de mayor prioridad que este pendiente de ejecucion.
 
 NOTA: Las variables globales que sean modificadas desde la ISR deberan tener el atributo _volatile_.
 

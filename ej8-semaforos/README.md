@@ -8,7 +8,7 @@ Cuando una tarea decrementa el semaforo, si el resultado es negativo, la tarea s
 
 Un semaforo se utiliza para resolver un problema de serializacion mediante la señalizacion. Es decir, que algo se ejecute antes que otra cosa si o si. Por ejemplo, que una tarea o una isr le avise a otra tarea que algo paso para que actue.
 
-NOTA: La señalizacion puede hacer en ambos sentidos. Por ejemplo, si consideramos que 2 tareas estan compuestas por 2 segmentos de codigo. Si, el incio del primer segmento de la tarea 2 depende de fin del primer segmento de la tarea 1. Y luego, el inicio del segundo segmento de la tarea 1 depende del fin del segundo segmento de la tarea 2. Se debe tener cuidad con los puntos muerto o interbloqueos (deadlocks).
+NOTA: La señalizacion se puede hacer en ambos sentidos. Por ejemplo, si consideramos que 2 tareas estan compuestas por 2 segmentos de codigo. Si, nos queremos asegurar que el primer segmento se la tarea 1 se ejecute antes del segundo segmento de la tarea 2. Y al mismo tiempo, nos queremos asegurar que el primer segmento se la tarea 2 se ejecute antes del segundo segmento de la tarea 1. Esto se conce como cita ( rendezvous ). En estos casos, se puede producir un punto muerto o interbloqueo (deadlock).
 
 En FreeRTOS hay 3 tipos de semaforos:
 
