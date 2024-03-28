@@ -1,0 +1,1 @@
+Hola mundo desde un archivo presente en la carpeta spiffs del proyecto
