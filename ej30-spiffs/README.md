@@ -32,16 +32,14 @@ Es necesario crear una particion dentro de la flash para almacenar el _SPIFFS_.
 4. Crear un archivo llamado _partitions_ con extension _.csv_ en el directorio raiz del proyecto.
 5. Copiar al archivo _partitions.csv_ el siguiente contenido:
 
-   # ESP-IDF Partition Table
-
-   # Name, Type, SubType, Offset, Size, Flags
-
+   \# ESP-IDF Partition Table
+   \# Name, Type, SubType, Offset, Size, Flags
    nvs, data, nvs, 0x9000, 0x6000,
    phy_init, data, phy, 0xf000, 0x1000,
    factory, app, factory, 0x10000, 1M,
    storage, data, spiffs, , 0xF0000,
 
-6. Volver a compilar.
+7. Volver a compilar.
 
 El valor por defecto de _Partition Table_ es _Single factory app, no OTA_. Dicha opcion, tiene el mismo contenido que el copiado en el paso 5, excepto por la linea de _storage, data, spiffs, , 0xF0000,_. Mas adelante, se veran otros esquemas de particionado para habilitar mas funcionalidades del _ESP-IDF_.
 
