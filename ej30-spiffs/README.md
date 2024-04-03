@@ -7,16 +7,18 @@ El _SPIFFS_ esta pensado para almacernar archivos en la memoria flash conectada 
 Pero posee las siguientes limitaciones:
 
 - No soporta directorios. Todos los archivos quedan montados sobre la ruta _/spiffs_.
-- No tiene un comportamiento deterministico por lo que una operacion de escritura puede tardar mas que otra.
+- No tiene un comportamiento deterministico, por lo que una operacion de escritura puede tardar mas que otra.
 - No detecta o maneja sectores con errores.
-- Puede utilizar a lo sumo un 75% del espacio disponible originalmente.
+- Puede utilizar, como mucho, un 75% del espacio disponible originalmente.
 - Cuando se esta llenando la memoria, puede tardar muchos segundos en la busqueda de espacio libre para hacer una operacion de escritura.
 - Borrar un archivo, puede dejar sectores inservibles a futuro.
 - Una falla de alimentacion puede corromper todo el sistema de archivos.
 
-NOTA: No es recomendable hacer operaciones de escritura, solo de lectura. Por lo que no sirve para hacer un _datalogger_. Pero si, para almacenar los archivos de un _webserver_.
+No es recomendable hacer operaciones de escritura, solo de lectura, por lo que no sirve para hacer un _datalogger_. En cambio, si sirve para almacenar los archivos de un _webserver_.
 
-NOTA: En este caso, no se utiliza el bus de comunicacion _SPI_ de forma directa. Pero, en el ejemplo 32 explicaremos sus caracteristicas cuando conectemos una tarjeta _SD_ al _ESP32_.
+En este caso, no se utiliza el bus de comunicacion _SPI_ de forma directa, sino que esta enmascarada por el _ESP-IDF_. Esto, se llama _wrapper_ en programacion.
+
+En el ejemplo 32, explicaremos las caracteristicas del bus de comunicacion _SPI_ cuando conectemos una tarjeta _SD_ al _ESP32_.
 
 Bibliotecas a incluir:
 
@@ -46,7 +48,11 @@ Es necesario crear una particion dentro de la flash para almacenar el _SPIFFS_.
 
 6. Volver a compilar.
 
-El valor por defecto de _Partition Table_ es _Single factory app, no OTA_. Dicha opcion, tiene el mismo contenido que el copiado en el paso 5, excepto por la linea de _storage, data, spiffs, , 0xF0000,_. Mas adelante, se veran otros esquemas de particionado para habilitar mas funcionalidades del _ESP-IDF_.
+El valor por defecto de _Partition Table_ es _Single factory app, no OTA_.
+
+Dicha opcion, tiene el mismo contenido que el copiado en el paso 5, excepto por la linea de _storage, data, spiffs, , 0xF0000,_.
+
+Mas adelante, se veran otros esquemas de particionado para habilitar mas funcionalidades del _ESP-IDF_.
 
 Agregar este paso a la preparacion de todos los proyectos a partir de ahora.
 
@@ -61,11 +67,18 @@ Agregar este paso a la preparacion de todos los proyectos a partir de ahora.
 3. Llamar a la funcion _esp_vfs_spiffs_register_.
 4. Pasarle como parametro un puntero a _conf_.
 5. Guardar el valor retornado en _ret_.
-6. Evaluar los posibles valores de _ret_:
-   - _ESP_OK_ indica que no hay error.
-   - _ESP_FAIL_ indica que no se pudo montar el file system.
-   - _ESP_ERR_NOT_FOUND_ indica que no hay una particion en la _flash_ para el _SPIFFS_.
-   - En otro caso, ver el contenido del _string_ retornado por la funcion _esp_err_to_name_, a la que se le pasa como parametro _ret_.
+
+Si _ret_ es igual a _ESP_OK_ no hay errores.
+
+En cambio, si _ret_ es igual a _ESP_FAIL_ indica que no se pudo montar el _file system_.
+
+En cambio, si _ret_ es igual a _ESP_ERR_NOT_FOUND_ indica que no hay una particion en la _flash_ definida para el _SPIFFS_.
+
+En cambio, si _ret_ tiene otro valor,
+
+1. Llamar a la funcion _esp_err_to_name_.
+2. Pasarle como parametro _ret_.
+3. Hacer un _log_ con el formato _%s_ del valor retornado.
 
 ## Obtener informacion del SPIFFS y formatear en caso de error en ESP-IDF
 
@@ -76,13 +89,14 @@ Agregar este paso a la preparacion de todos los proyectos a partir de ahora.
 5. Pasarle como segundo parametro un puntero a _total_.
 6. Pasarle como tercer parametro un puntero a _used_.
 7. Guardar el valor retornado en _ret_.
-8. Evaluar los posibles valores de _ret_:
-   - _ESP_OK_ indica que no hay error, se tiene el tamaño de la particion en _total_, y se tiene el espacio utilizado en _used_.
-   - En otro caso:
-     a. Ver el contenido del _string_ retornado por la funcion _esp_err_to_name_, a la que se le pasa como parametro _ret_.
-     b. Llamar a la funcion _esp_spiffs_format_.
-     c. Pasarle como parametro _conf.partition_label_.
-     d. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
+
+Si _ret_ es igual a _ESP_OK_ no hay error, y el tamaño de la particion esta en _total_, y el espacio utilizado en _used_.
+
+En cambio, si _ret_ tiene otro valor:
+
+1. Llamar a la funcion _esp_spiffs_format_.
+2. Pasarle como parametro _conf.partition_label_.
+3. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 
 ## Verificar la consistencia del SPIFFS en ESP-IDF
 
@@ -91,7 +105,14 @@ Si _used_ es mayor a _total_:
 1. Llamar a la funcion _esp_spiffs_check_
 2. Pasarle como parametro _conf.partition_label_.
 3. Guardar el valor retornado en _ret_.
-4. Si el valor de _ret_ no es _ESP_OK_, ver el contenido del _string_ retornado por la funcion _esp_err_to_name_, a la que se le pasa como parametro _ret_.
+
+Si _ret_ es igual a _ESP_OK_ no hay error.
+
+En cambio, si _ret_ tiene otro valor:
+
+1. Llamar a la funcion _esp_err_to_name_.
+2. Pasarle como parametro _ret_.
+3. Hacer un _log_ con el formato _%s_ del valor retornado.
 
 ## Desmontar y dehabilitar el SPIFFS en ESP-IDF
 
@@ -110,4 +131,4 @@ Este ejemplo es integrador porque:
 - Utilizamos un sistema de almacenamiento de archivos como _SPIFFS_.
 - Realizamos un caso de particionado de la memoria _flash_.
 
-NOTA: Hay una biblioteca alternativa a _SPIFFS_ que se llama _LittleFS_ y esta dentro de los modulos mantenidos por _Espressif_.
+NOTA: Hay una biblioteca alternativa a _SPIFFS_ que se llama _LittleFS_. Y, esta dentro de los modulos mantenidos por _Espressif_.
