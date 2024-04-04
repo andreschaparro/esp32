@@ -4,7 +4,28 @@
 
 En el ejemplo, buscaremos las redes _wifi_ disponibles a las que podamos conectarnos y mostraremos la informacion de las primeras 10 que tengan mejor señal en el _ESP-IDF Monitor device_.
 
-En todas las aplicaciones donde se trabaje con redes _wifi_, sera necesario inicializar el _NVS_.
+En todas las aplicaciones donde se trabaje con la _api wifi_, sera necesario inicializar el _NVS_. Alli, se guardara la configuracion en caso de que se reinicie el _ESP32_.
+
+Cuando se trabaja con la _api wifi_ se pueden retornar 4 tipos de valores:
+
+- _ESP_OK_.
+- Errores de los que podemos recuperarnos como _ESP_ERR_NO_MEM_.
+- Errores de los que no podemos recuperarnos pero no son criticos.
+- Errores de los que no podemos recuperarnos pero son criticos.
+
+Que un error sea critico o no, depende de la _api_ y de la aplicacion que estemos programando.
+
+**Por ello, siempre verificar si hubo errores y escribir los handlers correspondientes.**
+
+- Para errores de los que nos podemos recuperar, podemos llamar a _vTaskDelay_ y esperar uno microsegundos para hacer otro intento.
+- Para errores de los que no nos podemos recuperar y no son criticos, es bueno imprimir la informacion con la macro _ESP_LOGE_.
+- Para errores de los que no nos podemos recuperar y son criticos, la macro _assert_ es una buena opcion.
+
+Aunque la macro _ESP_ERR_CHECK_ es el _handler_ de error mas utilizado, es recomedable que con la _api wifi_ escribamos nuestros propios _handlers_.
+
+Otro aspecto a tener en cuenta cuando se trabaja con la _api wifi_, es que para las variables, cuyo tipo deriva de un _struct_, hay macros de incicializacion definidas en la _api wifi_ que deben usarse siempre.
+
+Mas adelante, se explicara como funciona el _driver wifi_ con mas detalle.
 
 Bibliotecas a incluir:
 
@@ -16,10 +37,15 @@ Bibliotecas a incluir:
 2. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 3. Llamar a la funcion _esp_event_loop_create_default_.
 4. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
+5. Crear una variable llamada _sta_netif_ del tipo _esp_netif_t\*_.
+6. Llamar a la funcion _esp_netif_create_default_wifi_sta_.
+7. Guardar el valor retornado en _sta_netif_.
+8. Llamar a la macro _assert_.
+9. Pasarle como parametro _sta_netif_.
 
 ## Configurar el modulo wifi en modo station en ESP-IDF
 
-El modo _station_ se usa cuando conectamos nuestro _ESP32_ a una red _wifi_. En otras palabras, es como si fuese un cliente de dicha red.
+El modo _station_ se usa cuando conectamos nuestro _ESP32_ a una red _wifi_.
 
 1. Crear una variable llamada _cfg_ del tipo _wifi_init_config_t_.
 2. Llamar a la macro _WIFI_INIT_CONFIG_DEFAULT_.
@@ -32,7 +58,7 @@ El modo _station_ se usa cuando conectamos nuestro _ESP32_ a una red _wifi_. En 
 9. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 10. Llamar a la funcion _esp_wifi_start_.
 
-## Buscar las redes wifi con mejor señal en ESP-IDF
+## Buscar las redes wifi con mejor señal y mostrar su informacion en ESP-IDF
 
 1. Crear una constante llamada _scan_list_size_ del tipo _uint16_t_.
 2. El valor de _scan_list_size_ debe ser _10_.
