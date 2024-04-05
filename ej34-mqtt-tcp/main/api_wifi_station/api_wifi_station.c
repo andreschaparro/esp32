@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <string.h>
+#include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
-#include "esp_log.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
+#include "api_wifi_station.h"
 
 static const uint32_t max_retry_num = 5;
 
-static const char *tag = "WIFI-EVENTS";
-static const char *ssid = "FV-IOT";
-static const char *pwd = "FVVR#iot1980";
+static const char *tag = "API-WIFI-STATION";
 
 static const EventBits_t wifi_connected_bit = BIT0;
 static const EventBits_t wifi_fail_bit = BIT1;
@@ -21,31 +20,12 @@ static uint32_t retry_num = 0;
 static EventGroupHandle_t bits_wifi_event_group;
 
 static void nvs_init(void);
-static void wifi_station_init(void);
 static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data);
 static void print_station_disconnected_reason(wifi_err_reason_t wifi_err_reaso);
 
-void app_main(void)
+esp_err_t wifi_station_init(const char *ssid, const char *pwd)
 {
-    esp_log_level_set(tag, ESP_LOG_DEBUG);
     nvs_init();
-    wifi_station_init();
-    vTaskDelete(NULL);
-}
-
-static void nvs_init(void)
-{
-    esp_err_t ret = nvs_flash_init();
-    if ((ret == ESP_ERR_NVS_NO_FREE_PAGES) || (ret == ESP_ERR_NVS_NEW_VERSION_FOUND))
-    {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
-}
-
-static void wifi_station_init(void)
-{
     bits_wifi_event_group = xEventGroupCreate();
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -79,12 +59,25 @@ static void wifi_station_init(void)
         portMAX_DELAY);
     if (bits & wifi_connected_bit)
     {
-        ESP_LOGD(tag, "Conectado a ssid: %s password: %s", ssid, pwd);
+        ESP_LOGI(tag, "Conectado a ssid: %s password: %s", ssid, pwd);
+        return ESP_OK;
     }
     else if (bits & wifi_fail_bit)
     {
-        ESP_LOGE(tag, "No se pudo conectar a ssid: %s password: %s", ssid, pwd);
+        ESP_LOGI(tag, "No se pudo conectar a ssid: %s password: %s", ssid, pwd);
     }
+    return ESP_FAIL;
+}
+
+static void nvs_init(void)
+{
+    esp_err_t ret = nvs_flash_init();
+    if ((ret == ESP_ERR_NVS_NO_FREE_PAGES) || (ret == ESP_ERR_NVS_NEW_VERSION_FOUND))
+    {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
 }
 
 static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
@@ -92,7 +85,7 @@ static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_
     switch (event_id)
     {
     case WIFI_EVENT_STA_START:
-        ESP_LOGD(tag, "Conectando por primera vez...");
+        ESP_LOGI(tag, "Conectando por primera vez...");
         ESP_ERROR_CHECK(esp_wifi_connect());
         break;
     case WIFI_EVENT_STA_DISCONNECTED:
@@ -103,7 +96,7 @@ static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_
         {
             retry_num++;
             ESP_ERROR_CHECK(esp_wifi_connect());
-            ESP_LOGD(tag, "Reconectando al access point...");
+            ESP_LOGI(tag, "Reconectando al access point...");
         }
         else
         {
@@ -114,7 +107,7 @@ static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_
     case IP_EVENT_STA_GOT_IP:
         retry_num = 0;
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
-        ESP_LOGD(tag, "IP: " IPSTR, IP2STR(&event->ip_info.ip));
+        ESP_LOGI(tag, "IP: " IPSTR, IP2STR(&event->ip_info.ip));
         xEventGroupSetBits(bits_wifi_event_group, wifi_connected_bit);
         break;
     default:

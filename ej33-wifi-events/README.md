@@ -62,7 +62,7 @@ Segundo, lo haremos para solo para el evento que se produce cuando el ESP32 toma
    - El segundo argumento es _esp_event_base_t event_base_.
    - El tercer argumento es _int32_t event_id_.
    - El cuarto argumento es _void \*event_data_.
-2. Crear un swith utilizando el valor de _event_id_.
+2. Crear un swith utilizando _event_id_.
 
 El evento _WIFI_EVENT_STA_START_ se produce despues de llamar a la funcion _esp_wifi_start_ y que la misma retorne _ESP_OK_. Se utiliza comunmente, para llamar a la funcion _esp_wifi_connect_ y que el _ESP32_ intente conectarse al _access point_ por primera vez.
 
