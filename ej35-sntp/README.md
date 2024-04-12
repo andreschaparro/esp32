@@ -23,6 +23,8 @@ Bibliotecas a incluir:
 4. Clic en _Save_.
 5. Ejecutar _ESP-IDF Build project_.
 
+Agregar este paso a la preparacion de todos los proyectos a partir de ahora.
+
 ## Inicializar la fecha y hora del sistema en ESP-IDF
 
 1. Crear una variable llamada _config_ del tipo _esp_sntp_config_t_.
