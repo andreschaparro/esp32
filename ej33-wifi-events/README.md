@@ -32,7 +32,7 @@ Ademas, los _wifi events_ son utilizados por la biblioteca _esp_netif_ para auto
 
 Por todo lo dicho, es necesaria la inicializacion del _stack TCP/IP_ vista anteriormente.
 
-## Registrar un handler a los wifi events en ESP-IDF
+## Registrar un handler a los wifi events en modo station en ESP-IDF
 
 Primero, lo haremos para los eventos producidos por el _driver wifi_:
 
@@ -54,7 +54,7 @@ Segundo, lo haremos para solo para el evento que se produce cuando el ESP32 toma
 6. Pasarle como quinto parametro _NULL_.
 7. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 
-## Definicion del handler para los wifi events en ESP-IDF
+## Definicion del handler para los wifi events en modo station en ESP-IDF
 
 1. Crear una funcion llamada _event_handler_ que:
    - Devuelve _void_.
@@ -76,7 +76,7 @@ Se utiliza comunmente, para que el _handler_ vuelva a llamar a _esp_wifi_connect
 
 El evento _IP_EVENT_STA_GOT_IP_ se produce cuando el _ESP32_ obtiene una _IP_ valida del _dhcp server_ del _access point_. Se utiliza comunmente, para mostrar la _IP_ que tomo el _SOC_ por el _ESP-IDF: Monitor Device_ y reiniciar el contador de intentos de reconexion a _0_.
 
-## Cargar ssid y password para realizar la conexion a la red wifi en ESP-IDF
+## Cargar ssid y password para realizar la conexion a la red wifi en modo station en ESP-IDF
 
 1. Crear una constante llamada _ssid_ del tipo _char\*_ donde este almacenado el _ssid_ de la red _wifi_.
 2. Crear una constante llamada _pwd_ del tipo _char\*_ donde este almacenado el _pasword_ de la red _wifi_.
@@ -96,7 +96,7 @@ El evento _IP_EVENT_STA_GOT_IP_ se produce cuando el _ESP32_ obtiene una _IP_ va
 
 NOTA: Es importante el orden en que se realiza la inicializacion. Ver el codigo para seguirlo con mas claridad.
 
-## Notificar a la tarea de una conexion exitosa o fallida a la red wifi desde el handler utilizando un event group de FreeRTOS
+## Notificar a la tarea de una conexion exitosa o fallida a la red wifi en modo station desde el handler utilizando un event group de FreeRTOS
 
 1. Crear un _EventGroupHandle_t_ llamado _bits_wifi_event_group_.
 2. Crear dos constantes del tipo _EventBits_t_ llamadas _wifi_connected_bit_ y _wifi_fail_bit_.

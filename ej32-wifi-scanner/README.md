@@ -4,6 +4,8 @@
 
 En el ejemplo, buscaremos las redes _wifi_ disponibles a las que podamos conectarnos y mostraremos la informacion de las primeras 10 que tengan mejor señal en el _ESP-IDF Monitor device_.
 
+Cuando nos conectamos a una red _wifi_, decimos que el _ESP32_ opera en el modo de funcionamiento _station_.
+
 En todas las aplicaciones donde se trabaje con la _api wifi_, sera necesario inicializar el _NVS_. Alli, se guardara la configuracion en caso de que se reinicie el _ESP32_.
 
 Cuando se trabaja con la _api wifi_ se pueden retornar 4 tipos de valores:
@@ -31,7 +33,7 @@ Bibliotecas a incluir:
 
 - **esp_wifi**
 
-## Inicializar el stack TCP/IP en ESP-IDF
+## Inicializar el stack TCP/IP en modo station en ESP-IDF
 
 1. Llamar a la funcion _esp_netif_init_.
 2. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
@@ -57,6 +59,7 @@ El modo _station_ se usa cuando conectamos nuestro _ESP32_ a una red _wifi_.
 8. Pasarle como parametro _WIFI_MODE_STA_.
 9. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 10. Llamar a la funcion _esp_wifi_start_.
+11. Verificar el valor retornado con la macro _ESP_ERROR_CHECK_.
 
 ## Buscar las redes wifi con mejor señal y mostrar su informacion en ESP-IDF
 
