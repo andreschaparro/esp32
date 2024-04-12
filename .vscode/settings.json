@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "api_wifi_station.h": "c"
   }
 }

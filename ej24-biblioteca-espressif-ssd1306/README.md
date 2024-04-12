@@ -82,10 +82,11 @@ NOTA: Ver en la pagina que este _component_ tiene como dependencia a otro llamad
 10. Presionar _ENTER_.
 11. Verificar, que se crea un archivo llamado _idf_component.yml_ dentro de la carpeta _main_.
 12. Verificar, que dentro del archivo _idf_component.yml_ esten ambos modulos como _dependencies_.
-13. Volver a compilar el proyecto.
-14. Verificar, que se crea una carpeta llamada _managed_component_ dentro del directio del proyecto.
-15. Verificar, que se crea una carpeta llamada _espressif\_\_esp_lvgl_port_ dentro de _managed_component_.
-16. Verificar, que se crea una carpeta llamada _lvgl\_\_lvgl_ dentro de _managed_component_.
+13. Hacer un _ESP-IDF: Full Clean_.
+14. Volver a compilar el proyecto.
+15. Verificar, que se crea una carpeta llamada _managed_component_ dentro del directio del proyecto.
+16. Verificar, que se crea una carpeta llamada _espressif\_\_esp_lvgl_port_ dentro de _managed_component_.
+17. Verificar, que se crea una carpeta llamada _lvgl\_\_lvgl_ dentro de _managed_component_.
 
 Estos dos _components_, nos permitiran utilizar el controlador para pantallas _LCD_, que viene incluido en el _ESP-IDF_, con el display _OLED SSD1306_.
 
