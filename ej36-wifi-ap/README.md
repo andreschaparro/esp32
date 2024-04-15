@@ -4,7 +4,7 @@
 
 En el ejemplo, crearemos una red wifi con el _ESP32_. A la cual nos podremos conectar utilizando nuestro celular. Ese modo de funcionamiento se llama _access point_.
 
-A futuro, cuando diseñemos una pagina web de configuracion en el _ESP32_, esta funcion sera util para acceder a la misma.
+Como veremos mas adelante, se puede diseñar una pagina web de configuracion para el _ESP32_. Y este modo, sera util para acceder a la misma antes de cargar los datos de _ssid_ y _password_ de la red _wifi_ a la que nos conectaremos.
 
 No sw pueden conectar mas de 4 dispositivos a la vez al _ESP32_.
 
@@ -60,7 +60,7 @@ El modo _station_ se usa cuando conectamos nuestro _ESP32_ a una red _wifi_.
    - El cuarto argumento es _void \*event_data_.
 2. Crear un swith utilizando _event_id_.
 
-El evento _WIFI_EVENT_AP_STACONNECTED_ se produce cada vez que un dispositivo se conecta. Se puede utilizar para llevar un registro de las _mac address_ y direcciones _ip_ de los dispositivos conectados.
+El evento _WIFI_EVENT_AP_STACONNECTED_ se produce cada vez que un dispositivo se conecta. Se puede utilizar para llevar un registro de las _mac address_ y la cantidad de dispositivos conectados.
 
 El evento _WIFI_EVENT_AP_STADISCONNECTED_ se puede producir en los siguientes casos:
 
@@ -68,7 +68,7 @@ El evento _WIFI_EVENT_AP_STADISCONNECTED_ se puede producir en los siguientes ca
 - Si tras 5 minutos un dispositivo no envia paquetes. Este tiempo, se puede modificar llamando a la funcion _esp_wifi_set_inactive_time_.
 - Cuando la estacion deshabilita el modo _access point_.
 
-Se puede utilizar para llevar un registro de las _mac address_ y direcciones _ip_ de los dispositivos que se desconectaron.
+Se puede utilizar para llevar un registro de las _mac address_ y la cantidad de dispositivos conectados.
 
 ## Cargar ssid y password para poder conectarse a la red wifi en modo access point en ESP-IDF
 
