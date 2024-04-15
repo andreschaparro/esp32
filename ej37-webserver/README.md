@@ -1,4 +1,4 @@
-# Ejemplo 36: Webserver basico en ESP-IDF
+# Ejemplo 37: Webserver basico en ESP-IDF
 
 ## Introduccion
 

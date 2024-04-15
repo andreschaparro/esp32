@@ -84,7 +84,7 @@ NOTA: Ver en la pagina que este _component_ tiene como dependencia a otro llamad
 12. Verificar, que dentro del archivo _idf_component.yml_ esten ambos modulos como _dependencies_.
 13. Hacer un _ESP-IDF: Full Clean_.
 14. Volver a compilar el proyecto.
-15. Verificar, que se crea una carpeta llamada _managed_component_ dentro del directio del proyecto.
+15. Verificar, que se crea una carpeta llamada _managed_components_ dentro del directio del proyecto.
 16. Verificar, que se crea una carpeta llamada _espressif\_\_esp_lvgl_port_ dentro de _managed_component_.
 17. Verificar, que se crea una carpeta llamada _lvgl\_\_lvgl_ dentro de _managed_component_.
 

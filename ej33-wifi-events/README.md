@@ -72,7 +72,7 @@ El evento _WIFI_EVENT_STA_DISCONNECTED_ se puede producir en los siguientes caso
 - Cuando se llama a la funcion _esp_wifi_connect_ pero falla la conexion.
 - Cuando se interrumpe la conexion previamente establecida al _access point_ por el motivo que fuese.
 
-Se utiliza comunmente, para que el _handler_ vuelva a llamar a _esp_wifi_connect_ un numero maximo de veces para intentar reconectarse. Y ademas, para mostrar la causa de la desconexion a la red _wifi_.
+Se utiliza comunmente, para que el _handler_ vuelva a llamar a _esp_wifi_connect_ un numero maximo de veces para intentar reconectarse. Y ademas, para mostrar la causa de la desconexion a la red _wifi_. Entre intentos de conexion es conveniente agregar un intervalo de tiempo de 5 segundos llamando a la funcion _vTaskDelay_.
 
 El evento _IP_EVENT_STA_GOT_IP_ se produce cuando el _ESP32_ obtiene una _IP_ valida del _dhcp server_ del _access point_. Se utiliza comunmente, para mostrar la _IP_ que tomo el _SOC_ por el _ESP-IDF: Monitor Device_ y reiniciar el contador de intentos de reconexion a _0_.
 

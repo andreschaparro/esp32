@@ -95,8 +95,9 @@ static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_
         if (retry_num < max_retry_num)
         {
             retry_num++;
-            ESP_ERROR_CHECK(esp_wifi_connect());
+            vTaskDelay(pdMS_TO_TICKS(5 * 1000));
             ESP_LOGI(tag, "Reconectando al access point...");
+            ESP_ERROR_CHECK(esp_wifi_connect());
         }
         else
         {
