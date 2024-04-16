@@ -51,14 +51,14 @@ Bibliotecas a incluir:
 
 - **esp_http_server.h**
 
-## Crear un handler que atienda la peticion de un recurso por el metodo GET del webserver en ESP-IDF
+## Crear un handler que atienda la peticion de un recurso con el metodo GET del webserver en ESP-IDF
 
 1. Crear una constante global llamada _root_uri_ del tipo _httpd_uri_t_:
    - El miembro _.uri_ debe valer _"/"_.
    - El miembro _.method_ debe valer _HTTP_GET_.
    - El miembro _.handler_ debe valer _root_get_handler_.
    - El miembro _.user_ctx_ debe valer _NULL_.
-2. Crear una funcion llamada \*_root_get_handler_.
+2. Crear una funcion llamada _root_get_handler_.
 3. Debe devolver _esp_err_t_.
 4. Debe recibir un parametro del tipo _req_ del tipo _httpd_req_t \*_.
 5. Crear una constante llamada _resp_ del tipo _char \*_. Inicializarla con el contenido de la respuesta al navegador _web._ En este caso _"Hola Mundo desde el ESP32!"_.
@@ -94,7 +94,7 @@ Si el valor retornado es igual a _ESP_OK_ el _servidor_ podran registrarse los _
 16. Llamara la funcion _vTaskDelete_.
 17. Pasarle como parametro _NULL_.
 
-## Registrar un handler que atienda la peticion de un recurso por el metodo GET del webserver en ESP-IDF
+## Registrar un handler que atienda la peticion de un recurso con el metodo GET del webserver en ESP-IDF
 
 1. Llamar a la funcion _httpd_register_uri_handler_.
 2. Pasarle como primer parametro _server_.
