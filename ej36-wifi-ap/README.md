@@ -6,7 +6,7 @@ En el ejemplo, crearemos una red wifi con el _ESP32_. A la cual nos podremos con
 
 Como veremos mas adelante, se puede diseñar una pagina web de configuracion para el _ESP32_. Y este modo, sera util para acceder a la misma antes de cargar los datos de _ssid_ y _password_ de la red _wifi_ a la que nos conectaremos.
 
-No sw pueden conectar mas de 4 dispositivos a la vez al _ESP32_.
+No se pueden conectar mas de 4 dispositivos a la vez al _ESP32_.
 
 Bibliotecas a incluir:
 

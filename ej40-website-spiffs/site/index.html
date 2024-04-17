@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Webserver ESP32</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Hola mundo desde el ESP32!</h1>
+    <p>El archivo html que crea el sitio web esta embebido dentro del SPIFFS.</p>
+    <p>Con los siguientes botones se generan las peticiones de POST que se hacian con Postman antes.</p>
+    <div>
+        <button onclick="cambiarLed(true)">Encender Led</button>
+        <button onclick="cambiarLed(false)">Apagar Led</button>
+    </div>
+    <script>
+        function cambiarLed(estado) {
+            var xhttp = new XMLHttpRequest();
+            var url = 'http://esp32-id1/api/led';
+            var data = {
+                is_on: estado,
+            };
+            var jsonData = JSON.stringify(data);
+            xhttp.open('POST', url, true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState === XMLHttpRequest.DONE) {
+                    if (xhttp.status === 200) {
+                        console.log(xhttp.responseText);
+                    } else {
+                        console.error('Hubo un problema con la solicitud.');
+                    }
+                }
+            };
+            xhttp.send(jsonData);
+        };
+    </script>
+</body>
+
+</html>
