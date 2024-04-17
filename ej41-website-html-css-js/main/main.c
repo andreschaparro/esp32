@@ -26,7 +26,7 @@ static esp_err_t led_post_handler(httpd_req_t *req);
 static void mdns_service_init();
 
 static const httpd_uri_t root_uri = {
-    .uri = "/",
+    .uri = "/*",
     .method = HTTP_GET,
     .handler = root_get_handler,
     .user_ctx = NULL,
@@ -54,6 +54,7 @@ void app_main(void)
 static httpd_handle_t webserver_init(void)
 {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.uri_match_fn = httpd_uri_match_wildcard;
     httpd_handle_t server = NULL;
     ESP_LOGI(tag, "Servidor iniciado en el port: %" PRIu16, config.server_port);
     if (httpd_start(&server, &config) == ESP_OK)
@@ -71,10 +72,46 @@ static httpd_handle_t webserver_init(void)
 
 static esp_err_t root_get_handler(httpd_req_t *req)
 {
-    FILE *fd = fopen("/spiffs/index.html", "r");
+    ESP_LOGI(tag, "URL: %s", req->uri);
+    char path[600];
+    memset(&path, '\0', sizeof(path));
+    sprintf(path, "/spiffs%s", req->uri);
+    char *ext = strrchr(req->uri, '.');
+    if (ext != NULL)
+    {
+        if (strcmp(ext, ".html") == 0)
+        {
+            httpd_resp_set_type(req, "text/html");
+        }
+        else if (strcmp(ext, ".js") == 0)
+        {
+            httpd_resp_set_type(req, "application/javascript");
+        }
+        else if (strcmp(ext, ".css") == 0)
+        {
+            httpd_resp_set_type(req, "text/css");
+        }
+        else if (strcmp(ext, ".png") == 0)
+        {
+            httpd_resp_set_type(req, "image/png");
+        }
+        else if (strcmp(ext, ".ico") == 0)
+        {
+            httpd_resp_set_type(req, "image/x-icon");
+        }
+        else if (strcmp(ext, ".svg") == 0)
+        {
+            httpd_resp_set_type(req, "text/xml");
+        }
+    }
+    if (strcmp(path, "/spiffs/") == 0)
+    {
+        strcat(path, "index.html");
+    }
+    FILE *fd = fopen(path, "r");
     if (fd == NULL)
     {
-        ESP_LOGE(tag, "Error al abrir el archivo index.html");
+        ESP_LOGE(tag, "Error al abrir el archivo: %s", path);
         ESP_ERROR_CHECK(httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Error al leer el archivo"));
         return ESP_FAIL;
     }
@@ -94,7 +131,7 @@ static esp_err_t root_get_handler(httpd_req_t *req)
             if (ret != ESP_OK)
             {
                 fclose(fd);
-                ESP_LOGE(tag, "Error al enviar el archivo index.html");
+                ESP_LOGE(tag, "Error al enviar el archivo: %s", path);
                 ESP_ERROR_CHECK(httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Error al enviar el archivo"));
                 return ESP_FAIL;
             }

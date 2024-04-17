@@ -22,6 +22,10 @@ Tambien utilizaremos FreeRTOS que es un RTOS apropiativo (preemptive). Por lo cu
 
 - https://www.freertos.org/features.html
 
+Finalmente, necesitaremos tener algunos conocimientos basicos de diseño web. No es una condicion necesaria, ser un desarollador full-stack para entender algunos de los ejemplos. Cuando se necesite, se daran algunos conceptos y si se desea aprender mas se recomienda seguir los tutoriales de:
+
+https://www.w3schools.com/
+
 Estos ejemplos, constituyen la primer etapa de este proyecto. En la siguiente, espero poder desarrollar un conjunto de videos para acompañarlos. Y finalmente, culiminar el proyecto con el dictado de un curso.
 
 Los invito a que hagan sus propios programa y no a clonar el repositorio unicamente para probar los ejemplos. Sino, no hay ninguna forma de aprender.

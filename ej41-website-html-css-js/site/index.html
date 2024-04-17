@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Webserver ESP32</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="theme.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <h1>Hola mundo desde el ESP32!</h1>
+    <p>El archivo html que crea el sitio web esta embebido dentro del SPIFFS.</p>
+    <p>Con los siguientes botones se generan las peticiones de POST que se hacian con Postman antes.</p>
+    <div id="botonera">
+        <button class="btn_on" onclick="cambiarLed(true)">Encender Led</button>
+        <button class="btn_off" onclick="cambiarLed(false)">Apagar Led</button>
+    </div>
+</body>
+
+</html>
